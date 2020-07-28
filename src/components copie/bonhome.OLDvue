@@ -1,0 +1,74 @@
+<template>
+    <div class="boite" id="perso">
+        <div id="txtBulle">
+          <p v-if ="compteurBoules <3">Enlève les boules {{laBoule}}s</p>
+          <p v-if ="compteurBoules >=3">Bien, maintenant, enlève les boules {{laBoule}}s</p>
+          <!-- <p>Coucou{{messageBoule}}</p> -->
+          <p>Déja {{compteurBoules}}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1024 768" style="enable-background:new 0 0 1024 768;" xml:space="preserve" id="shadow">
+          
+          <g id="tete">
+            <rect class="st0" width="394.6" height="407"/>
+          </g>
+          <!-- <path id="cheuveux" class="st3" d="M0,94.1c176-132,177.2-45.8,177.2-45.8s28.9-58.4,81-46.8s174.7-6.7,160.9,45.5
+	c-13.8,52.3,47.1,12.3,47.1,12.3s35.4-9.3,1,34.7s-150,44-150,44s-166,88.2-208.4,62.5S0,94.1,0,94.1z"/> -->
+          <g id="nez">
+            <g>
+              <path class="st1" d="M198.2,184.7c1.1,5.2,1.9,10.5,2.8,15.7c0.8,5.2,1.5,10.5,2.1,15.7c0.3,2.6,0.9,5.2,1.3,7.9
+                c0.5,2.6,0.5,5.2,0.1,7.9c-0.4,2.6-1.1,5.2-2.1,7.9c-1,2.6-2.2,5.2-4.2,7.9c-0.3,0.4-0.8,0.5-1.2,0.2c-0.1,0-0.1-0.1-0.2-0.2
+                c-2-2.6-3.2-5.2-4.2-7.9c-1-2.6-1.6-5.2-2.1-7.9c-0.4-2.6-0.4-5.2,0.1-7.9c0.4-2.6,1.1-5.2,1.3-7.9c0.6-5.2,1.3-10.5,2.1-15.7
+                c0.9-5.2,1.7-10.5,2.8-15.7c0.1-0.4,0.5-0.6,0.8-0.6C197.9,184.2,198.1,184.4,198.2,184.7z"/>
+            </g>
+          </g>
+
+            <g id="eyeleft">
+                <g id="eyeRight_1_">
+                  <line class="st2" x1="107.4" y1="204.9" x2="74.4" y2="173.1"/>
+                  <line class="st2" x1="74.9" y1="204.8" x2="106.7" y2="171.9"/>
+                </g>
+              </g>
+              <g id="eyeRight">
+                <line class="st2" x1="288.3" y1="171.5" x2="317.7" y2="206.5"/>
+                <line class="st2" x1="320.5" y1="174.9" x2="285.5" y2="204.4"/>
+              </g>
+
+            <g id="bouche">
+              <path class="st1" :d="sourire"/>
+              <!-- <path class="st3" d="M123,312.1c74.5,81.1,148-2,148-2"/> -->
+            </g>
+          </svg>
+          
+      </div>
+</template>
+
+<script>
+    export default {
+
+        name: 'Bonhomme',
+
+        data: function(){
+          return {
+            chiffreSourire : 11.1,
+             compteurBoules :0,
+             laBoule: 'bleu',
+          }
+
+        },
+        methods: {
+          
+        },
+        computed: {
+
+
+          sourire : function () {
+            return "M123,312.1c74.5,"+ this.chiffreSourire +",148-2,148-2"
+            //return "M460,500c74,"+ this.chiffreSourire +",148-2,148-2"
+          }
+        },
+    }
+</script>
+
+<style scoped>
+
+</style>
