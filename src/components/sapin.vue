@@ -10,7 +10,7 @@
 
          </div>
          <div id="boiteboules">
-         <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleu" class="boule bun"> -->
+         <!-- <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleu" class="boule bun">  -->
          <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
           <img @click="sourireClick('bleu', $event) ; auterboule()" ref="bleu" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleus"/>
           <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
