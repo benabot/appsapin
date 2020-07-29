@@ -10,16 +10,16 @@
 
          </div>
          <div id="boiteboules">
-         <!-- <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleu" class="boule bun">  -->
+         <!-- <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleue" class="boule bun">  -->
          <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img @click="sourireClick('bleu', $event) ; auterboule()" ref="bleu" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleus"/>
+          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
           <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
           <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule4" src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img @click="sourireClick('bleu', $event) ; auterboule()" ref="bleu" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleus"/>
+          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
           <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule6"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
           <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule7"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
           <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule8" src="../assets/bouleRouge.svg" alt="boule" class="boule rouges"/>
-          <img @click="sourireClick('bleu', $event) ; auterboule()" ref="bleu" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleus"/>
+          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleues"/>
           
         </div>
         
@@ -27,16 +27,31 @@
 
       <div class="boite" id="perso">
         <div id="txtBulle">
-          <!-- <transition name="fade"> -->
-          <p v-if ="compteurBoules <3">Enlève les boules {{laBoule}}s en cliquant dessus</p>
-          <p v-if ="compteurBoules >=3 && compteurBoules<6">Bien, maintenant, enlève les boules {{laBoule}}s</p>
-          <p v-if ="compteurBoules >=6 && compteurBoules<9">Il reste les boules {{laBoule}}s</p>
+          <transition name="fade">
+          <p v-if ="compteurBoules <3">Enlève les boules <span class="has-text-weight-bold">{{laBoule}}s</span> en cliquant dessus</p>
+           </transition>
+           <transition name="fade">
+          <p v-if ="compteurBoules >=3 && compteurBoules<6">Bien, maintenant, enlève les boules <span class="has-text-weight-bold">{{laBoule}}s</span></p>
+          </transition>
+           <transition name="fade">
+          <p v-if ="compteurBoules >=6 && compteurBoules<9">Il reste les boules <span class="has-text-weight-bold">{{laBoule}}s</span></p>
+          </transition>
+           <transition name="fade">
           <p v-if ="compteurBoules ==9 && compteurNom <3">Merci ! Au fait, tu t'appeles comment ?</p>
-          <p v-if ="compteurNom >=3 && compteurArbre ==0">Bonjour {{blaze}}, place au printemps. <br/> Clique sur le sapin pour le faire disparaître</p>
-          <p v-if ="compteurArbre ==1">Maintenant {{blaze}}, on va choisir un autre arbre. <br/> Si tu es d'accord, tape m'en 5!</p>
-          <p v-if ="compteurArbre == 2">Alors {{blaze}}, clique sur l'arbre de ton choix.</p>
-          <p v-if ="compteurArbre == 3">Merci {{blaze}}, à tantôt !</p>
-          <!-- </transition> -->
+          </transition>
+           <transition name="fade">
+          <p v-if ="compteurNom >=3 && compteurArbre ==0">Bonjour <span class="has-text-weight-bold">{{blaze}}</span>, place au printemps. <br/> Clique sur le sapin pour le faire disparaître</p>
+          </transition>
+           <transition name="fade">
+          <p v-if ="compteurArbre ==1">Maintenant <span class="has-text-weight-bold">{{blaze}}</span>, on va choisir un autre arbre. <br/> Si tu es d'accord, tape m'en 5&nbsp;!</p>
+          </transition>
+           <transition name="fade">
+          <p v-if ="compteurArbre == 2">Alors <span class="has-text-weight-bold">{{blaze}}</span>, clique sur l'arbre de ton choix.</p>
+          </transition>
+           <transition name="fade">
+          <p v-if ="compteurArbre == 3">Merci <span class="has-text-weight-bold">{{blaze}}</span>, tu veux rejouer ? <button class="button is-small" @click="compteurBoules=0 ; compteurNom=0 ; compteurArbre=0 ; changeArbre('sapin') ">en avant !</button></p>
+          </transition>
+         
         </div>
                             <input v-if ="compteurBoules ==9 && compteurArbre ==0" class="insertnom" v-model="blaze"  @keydown="compteurNom+=1" placeholder='nom'>
 
@@ -104,7 +119,7 @@ export default {
                 },
                 choixArbre: require('../assets/sapinOK2.svg'),
                 boules: [
-                  'bleu',
+                  'bleue',
                   'rouge',
                   'jaune',
                 ],
@@ -140,7 +155,7 @@ export default {
 
       auterboule() {
         if (this.compteurBoules <3){
-            this.laBoule =  'bleu';
+            this.laBoule =  'bleue';
           }
           if (this.compteurBoules >=3){
             this.laBoule =  'rouge';
@@ -183,6 +198,11 @@ export default {
              console.log('ohohho');
              break;
            
+          case 'sapin':
+            this.choixArbre = this.arbre.sapin;
+             this.compteurArbre =0;
+             break;
+           
         }
       }
       
@@ -198,7 +218,7 @@ export default {
 
    created() {
 
-       this.laBoule =  'bleu';
+       this.laBoule =  'bleue';
   //   const couleur = Math.floor(Math.random() * this.boules.length);
   //   this.laBoule = this.boules[couleur];
   //   console.log(this.laBoule);
@@ -206,7 +226,7 @@ export default {
   //  let  messageBoule: 'enlève les boules ' + laBoule;
   //  const contage = this.compteurBoules;
   //  if (contage <3){
-  //    this.laBoule =  'bleu';
+  //    this.laBoule =  'bleue';
   //  }
   //  if (contage >=3){
   //    this.laBoule =  'rouge';
@@ -254,6 +274,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  lang="scss">
+#app{
+      background: #0097A7;
+   height : 100vh;
+}
+
 
 h3 {
   margin: 40px 0 0;
@@ -370,7 +395,7 @@ svg{
              -20px -20px 60px #00aec0;
   width: auto;
  height: auto;
- padding: 1px 5px;
+ padding: 8px 12px;
   max-width: 36%;
   border-radius: 10px;
 
@@ -390,12 +415,17 @@ svg{
 }
 
 }
-// .fade-enter-active, .fade-leave-active {
-//   transition: opacity .9s;
-// }
-// .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-//   opacity: 0;
-// }
+.fade-enter-active {
+  transition: all .4s;
+}
+.fade-leave-active {
+  transition: all 0s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  // transform: scale(0, 0);
+  font-size : 0px;
+}
 .insertnom{
  background:none;
  border : none;

@@ -2,7 +2,9 @@
   <div id="app">
    
     
-      <Sapin/>
+      <Header/>
+      <div class="columns is-centered"><Intro v-on:gogo="debut = true"></Intro></div>
+      <Sapin v-if="debut"></Sapin>
       
     
   </div>
@@ -11,15 +13,25 @@
 <script>
 
 
+import Intro from './components/intro.vue'
+import Header from './components/header.vue'
 import Sapin from './components/sapin.vue'
 
 
 export default {
   name: 'app',
   components: {
+    Intro,
+    Header,
     Sapin,
   
-  }
+  },
+    data() {
+            return {
+              debut : false
+            }
+    },
+    
 }
 </script>
 
@@ -33,7 +45,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  // margin-top: 60px;
   background :#0097A7; 
 }
 .conteneur {
