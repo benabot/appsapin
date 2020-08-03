@@ -1,25 +1,34 @@
 <template>
   <kinesis-container tag="div" class="conteneur">
    
-      <div class="boite" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre">
+      <div class="boite" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0}">
          <div v-if="compteurArbre == 2" id="boitearbre">
+
+            <transition name="fade">
            <img @click="changeArbre('pin')" class="arbreachoisir"  id="pin" alt="arbre" :src="require('@/assets/pin.svg')">
+           </transition>
+            <transition name="fade">
            <img @click="changeArbre('palm')" class="arbreachoisir"  id="palm" alt="arbre" :src="require('@/assets/palm.svg')">
+           </transition>
+            <transition name="fade">
            <img @click="changeArbre('pommier')" class="arbreachoisir"  id="pommier" alt="arbre" :src="require('@/assets/pommier.svg')">
+           </transition>
+            <transition name="fade">
            <img @click="changeArbre('hetre')" class="arbreachoisir"  id="hetre" alt="arbre" :src="require('@/assets/hetre.svg')">
+           </transition>
 
          </div>
          <div id="boiteboules">
          <!-- <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleue" class="boule bun">  -->
-         <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
-          <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
-          <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule4" src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
-          <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule6"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
-          <img @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule7"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
-          <img @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule8" src="../assets/bouleRouge.svg" alt="boule" class="boule rouges"/>
-          <img @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleues"/>
+         <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule4" src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule6"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule7"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule8" src="../assets/bouleRouge.svg" alt="boule" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleues"/>
           
         </div>
         
@@ -49,7 +58,7 @@
           <p v-if ="compteurArbre == 2">Alors <span class="has-text-weight-bold">{{blaze}}</span>, clique sur l'arbre de ton choix.</p>
           </transition>
            <transition name="fade">
-          <p v-if ="compteurArbre == 3">Merci <span class="has-text-weight-bold">{{blaze}}</span>, tu veux rejouer ? <button class="button is-small" @click="compteurBoules=0 ; compteurNom=0 ; compteurArbre=0 ; changeArbre('sapin') ">en avant !</button></p>
+          <p v-if ="compteurArbre == 3">Merci <span class="has-text-weight-bold">{{blaze}}</span>, tu veux rejouer ? <button class="button is-small" @click="compteurBoules=0 ; compteurNom=0 ; compteurArbre=0 ; changeArbre('sapin') ; nouvellesboules = true ; blaze='' ; laBoule =  'bleue' ; chiffreSourire -= 135">en avant !</button></p>
           </transition>
          
         </div>
@@ -86,11 +95,18 @@
             <kinesis-element tag="g"  :strength="10" type="depth" id="bouche">
               <path class="st1" :d="sourire"/>
             </kinesis-element>
-            <g v-if ="compteurArbre ==1" @click="compteurArbre+=1" id="main">
-              <g>
-                <rect x="390" y="382.8" class="st4" width="218" height="19"/>
-                <rect x="608" y="328.9" class="st4" width="116" height="129.9"/>
-              </g>
+            <g v-if ="lamain && voirlamain" @click="compteurArbre+=1; voirlamain= false" id="main" class="survol">
+      <g>
+	<path class="st4" d="M394,382.8h212.4c3.1,0,5.6,2.5,5.6,5.6v7.7c0,3.1-2.5,5.6-5.6,5.6H394V382.8z"/>
+	<path class="st4" d="M527.3,359h36.3c9.9,0,18,7.2,18,16.1v40.4c0,8.9-8,16.1-18,16.1h-36.3c-9.9,0-18-7.2-18-16.1v-40.4
+		C509.3,366.2,517.3,359,527.3,359z"/>
+	<path class="st4" d="M516.7,372.1l97.7-19.7c2.5-0.5,5.4,3.3,6.4,8.4l0,0c1,5.1-0.2,9.7-2.7,10.2l-97.7,19.7
+		c-1,0.2-2.2-1.3-2.6-3.4l-2.2-11.1C515.2,374.2,515.7,372.3,516.7,372.1z"/>
+	<path class="st4" d="M523,384.4l99.7-1.7c2.6,0,4.7,4.2,4.8,9.4l0,0c0.1,5.2-1.9,9.5-4.5,9.6l-99.7,1.7c-1,0-1.9-1.7-1.9-3.8
+		l-0.2-11.3C521.1,386.1,522,384.4,523,384.4z"/>
+	<path class="st4" d="M516.6,404.9l99.3,9.1c2.5,0.2,4.2,4.7,3.7,9.9l0,0c-0.5,5.2-2.9,9.3-5.5,9l-99.3-9.1c-1-0.1-1.7-1.9-1.5-4
+		l1-11.2C514.6,406.5,515.6,404.9,516.6,404.9z"/>
+</g>
             </g>
           </svg>
           
@@ -123,7 +139,7 @@ export default {
                   'rouge',
                   'jaune',
                 ],
-                laBoule: '',
+                laBoule: 'bleue',
                 messageBoule: '',
                 bouleSelect: {
                   active: false,
@@ -132,6 +148,9 @@ export default {
                 compteurArbre :0,
                 compteurNom :0,
                 blaze:'',
+                nouvellesboules: false,
+                lamain: false,
+                voirlamain : false
                
             }
         },
@@ -170,6 +189,7 @@ export default {
         if (this.compteurNom >=3 && this.compteurArbre ==0){
         this.choixArbre = this.arbre.rien;
         this.compteurArbre += 1;
+        this.voirlamain=true;
 
         }
 
@@ -180,22 +200,18 @@ export default {
         switch (tree) {
           case 'pin':
             this.choixArbre = this.arbre.pin;
-             console.log('ahahha');
              break;
            
           case 'hetre':
             this.choixArbre = this.arbre.hetre;
-             console.log('ihihhi');
              break;
            
           case 'pommier':
             this.choixArbre = this.arbre.pommier;
-             console.log('uhuhhu');
              break;
            
           case 'palm':
             this.choixArbre = this.arbre.palm;
-             console.log('ohohho');
              break;
            
           case 'sapin':
@@ -204,7 +220,9 @@ export default {
              break;
            
         }
-      }
+      },
+
+      
       
   },
    computed: {
@@ -212,32 +230,13 @@ export default {
    
     sourire : function () {
       return "M123,312.1c74.5,"+ this.chiffreSourire +",148-2,148-2"
-      //return "M460,500c74,"+ this.chiffreSourire +",148-2,148-2"
     }
   },
 
    created() {
-
-       this.laBoule =  'bleue';
-  //   const couleur = Math.floor(Math.random() * this.boules.length);
-  //   this.laBoule = this.boules[couleur];
-  //   console.log(this.laBoule);
-    
-  //  let  messageBoule: 'enlève les boules ' + laBoule;
-  //  const contage = this.compteurBoules;
-  //  if (contage <3){
-  //    this.laBoule =  'bleue';
-  //  }
-  //  if (contage >=3){
-  //    this.laBoule =  'rouge';
-  //  }
-  //  if (contage >=6){
-  //    this.laBoule =  'jaune';
-  //  }
-
-   
-  // console.log(this.laBoule);
-
+     setInterval(()=> {
+       this.lamain = !this.lamain
+     }, 800)
   },
 
    mounted: function(){
@@ -246,26 +245,26 @@ export default {
 
     
     var tl = gsap.timeline();
-    tl.from("#arbre", {duration:1, opacity: 0})
-      tl.to('#shadow', { duration: 1.2, filter: "drop-shadow(20px 20px 60px #00808e)", ease: "sine"})
+    // tl.from("#arbre", {duration:1, opacity: 0})
+       tl.to('#shadow', { duration: .2, filter: "drop-shadow(20px 20px 60px #00808e)", ease: "sine"})
 
     tl.from('#nez', { duration: .2, scale: 0,})
     tl.from('#eyeleft', { duration: .1, scale: 0,})
     tl.from('#eyeRight', { duration: .1, scale: 0,})
     tl.from('#bouche', { duration: .3, scale: 0,})
     tl.from('#boule1', { duration: .1, y: -900,})
-    tl.from('#boule2', { duration: .1, y: -500,})
-    tl.from('#boule3', { duration: .1, y: -500,})
-    tl.from('#boule4', { duration: .1, y: -500,})
-    tl.from('#boule5', { duration: .1, y: -500,})
-    tl.from('#boule6', { duration: .1, y: -500,})
-    tl.from('#boule7', { duration: .1, y: -500,})
-    tl.from('#boule8', { duration: .1, y: -500,})
-    tl.from('#boule9', { duration: .1, y: -500,})
-    tl.from('#txtBulle', { duration: .3, y: -500,scale: 0})
+    tl.from('#boule2', { duration: .1, y: -1000,})
+    tl.from('#boule3', { duration: .1, y: -1000,})
+    tl.from('#boule4', { duration: .1, y: -1000,})
+    tl.from('#boule5', { duration: .1, y: -1000,})
+    tl.from('#boule6', { duration: .1, y: -1000,}, "gogogo")
+    tl.from('#boule7', { duration: .1, y: -1000,})
+    tl.from('#boule8', { duration: .1, y: -1000,})
+    tl.from('#boule9', { duration: .1, y: -1000,})
+    tl.from('#txtBulle', { duration: .3, y: -500,scale: 0, ease : "elastic.out(.5, 0.6)"}, "gogogo+=.1");
 
 
-    
+   
   },
  
 }
@@ -274,9 +273,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  lang="scss">
+html, body {
+    background: #0097A7;
+}
 #app{
       background: #0097A7;
-   height : 100vh;
+  //  height : 100vh;
 }
 
 
@@ -432,6 +434,18 @@ svg{
  border-bottom: 1px solid  #A7FFFF;
  }
 
+}
+
+
+
+#tete{
+  z-index: 1000;
+}
+#main{
+  z-index: 1;
+}
+.survol{
+  cursor :pointer;
 }
 .stMilieuBoule{fill:black;}
                 .stTourBoule{fill:#A7FFFF;}

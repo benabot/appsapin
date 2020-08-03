@@ -3,9 +3,12 @@
    
     
       <Header/>
+       <transition name="fade">
       <div class="columns is-centered"><Intro v-on:gogo="debut = true"></Intro></div>
+      </transition>
+       <transition name="fade">
       <Sapin v-if="debut"></Sapin>
-      
+      </transition>
     
   </div>
 </template>
@@ -51,5 +54,17 @@ body{
 .conteneur {
 display : flex;
 flex-direction: row;
+}
+
+.fade-enter-active {
+  transition: all .9s;
+}
+.fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  // transform: scale(0, 0);
+ 
 }
 </style>
