@@ -1,7 +1,7 @@
 <template>
-  <kinesis-container tag="div" class="conteneur">
+  <kinesis-container tag="div"  class="columns is-desktop">
    
-      <div class="boite" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0}">
+      <div class="boite column" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0}">
          <div v-if="compteurArbre == 2" id="boitearbre">
 
             <transition name="fade">
@@ -34,7 +34,7 @@
         
       </div>
 
-      <div class="boite" id="perso">
+      <div class="boite column" id="perso">
         <div id="txtBulle">
           <transition name="fade">
           <p v-if ="compteurBoules <3">Enlève les boules <span class="has-text-weight-bold">{{laBoule}}s</span> en cliquant dessus</p>
@@ -273,6 +273,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  lang="scss">
+
 html, body {
     background: #0097A7;
 }
@@ -301,9 +302,12 @@ a {
   display: none;
 }
 .boite {
-  width: 50%;
+  @media only screen and (max-width: 768px) {
+    height: 50vh;
+  }
+  //width: 50%;
   height: 80vh;
-
+ 
   &:first-of-type{
     background: #0097A7;
     background-size: contain;
@@ -385,6 +389,11 @@ a {
   margin: 0 auto;
   position : relative;
 svg{
+   @media only screen and (max-width: 768px) {
+    position : absolute;
+     width:80%;
+     top: 5%;
+  }
   width:50%;
   margin: 0 auto;
   position : fixed;
