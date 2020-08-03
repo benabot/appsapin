@@ -4,13 +4,11 @@
   <div class="columns">
   <div class="column monintro">
       <h2 class="title is-2">Apprendre l'interface d'un ordinateur</h2>
-  <p>Primar lorem ipsum dolor sit amet, consectetur
-  adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Sit amet,
-  consectetur adipiscing elit</p>
+  <p>Salut à toi jeune apprenant. Je m'appelle Flantier et j'ai oublié d'enlever mon sapin de noël... C'est l'été, j'ai grave les boules. Peux-tu m'aider à m'en débarrasser ? Si tu suis mes instructions je sourirais, à l'inverse, je tirerai la tronche. </p>
   <button class="button is-large" @click="debutclick() ; show = !show">C'est parti</button>
   </div>
   <div class="column">
-  <img src="../assets/noel.png" alt="">
+  <img src="../assets/bonhome.svg" alt="">
   </div>
   </div>
 </div>
