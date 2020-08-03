@@ -57,10 +57,10 @@ flex-direction: row;
 }
 
 .fade-enter-active {
-  transition: all .9s;
+  transition: all 1.9s;
 }
 .fade-leave-active {
-  transition: all .4s;
+  transition: all 1.4s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

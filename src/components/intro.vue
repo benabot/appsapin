@@ -1,5 +1,5 @@
 <template>
- <div class="notification is-success column is-10" v-if="show">
+ <div class="notification is-success column px-2	 is-three-quarters" v-if="show">
   <button class="delete" @click="debutclick() ; show = !show"></button>
   <div class="columns">
   <div class="column monintro">

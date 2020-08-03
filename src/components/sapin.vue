@@ -35,6 +35,7 @@
       </div>
 
       <div class="boite column" id="perso">
+        <div id="boitebulle">
         <div id="txtBulle">
           <transition name="fade">
           <p v-if ="compteurBoules <3">Enlève les boules <span class="has-text-weight-bold">{{laBoule}}s</span> en cliquant dessus</p>
@@ -52,20 +53,22 @@
           <p v-if ="compteurNom >=3 && compteurArbre ==0">Bonjour <span class="has-text-weight-bold">{{blaze}}</span>, place au printemps. <br/> Clique sur le sapin pour le faire disparaître</p>
           </transition>
            <transition name="fade">
-          <p v-if ="compteurArbre ==1">Maintenant <span class="has-text-weight-bold">{{blaze}}</span>, on va choisir un autre arbre. <br/> Si tu es d'accord, tape m'en 5&nbsp;!</p>
+          <p v-if ="compteurArbre ==1">Maintenant <span class="has-text-weight-bold">{{blaze}}</span>, on va choisir un autre arbre. <br/> Si tu es d'accord, tape dans ma main&nbsp;!</p>
           </transition>
            <transition name="fade">
           <p v-if ="compteurArbre == 2">Alors <span class="has-text-weight-bold">{{blaze}}</span>, clique sur l'arbre de ton choix.</p>
           </transition>
            <transition name="fade">
-          <p v-if ="compteurArbre == 3">Merci <span class="has-text-weight-bold">{{blaze}}</span>, tu veux rejouer ? <button class="button is-small" @click="compteurBoules=0 ; compteurNom=0 ; compteurArbre=0 ; changeArbre('sapin') ; nouvellesboules = true ; blaze='' ; laBoule =  'bleue' ; chiffreSourire -= 135">en avant !</button></p>
+          <p v-if ="compteurArbre == 3"> Ah, un {{nomdelarbre}} ! Très bon choix <span class="has-text-weight-bold">{{blaze}}</span>, tu veux rejouer&nbsp;? <button class="button is-small" @click="compteurBoules=0 ; compteurNom=0 ; compteurArbre=0 ; changeArbre('sapin') ; nouvellesboules = true ; blaze='' ; laBoule =  'bleue' ; chiffreSourire -= 135">en avant !</button></p>
           </transition>
          
         </div>
-                            <input v-if ="compteurBoules ==9 && compteurArbre ==0" class="insertnom" v-model="blaze"  @keydown="compteurNom+=1" placeholder='nom'>
+                                 <br/>   <input v-if ="compteurBoules ==9 && compteurArbre ==0" class="insertnom" v-model="blaze"  @keydown="compteurNom+=1" placeholder='nom'>
 
-        
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1024 768" style="enable-background:new 0 0 1024 768;" xml:space="preserve" id="shadow">
+        </div>
+
+        <div class="level">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 927.5 432.9" style="enable-background:new 0 0 1024 768;" xml:space="preserve" id="shadow" class="level-item">
           
           <kinesis-element tag="g"  :strength="15" type="depth" id="tete">
             <rect class="st0" width="394.6" height="407"/>
@@ -109,6 +112,7 @@
 </g>
             </g>
           </svg>
+      </div>
           
       </div>
   </kinesis-container>
@@ -150,7 +154,8 @@ export default {
                 blaze:'',
                 nouvellesboules: false,
                 lamain: false,
-                voirlamain : false
+                voirlamain : false,
+                nomdelarbre : ''
                
             }
         },
@@ -200,18 +205,22 @@ export default {
         switch (tree) {
           case 'pin':
             this.choixArbre = this.arbre.pin;
+            this.nomdelarbre = 'pin';
              break;
            
           case 'hetre':
             this.choixArbre = this.arbre.hetre;
+            this.nomdelarbre= 'hêtre';
              break;
            
           case 'pommier':
             this.choixArbre = this.arbre.pommier;
+            this.nomdelarbre= 'pommier';
              break;
            
           case 'palm':
             this.choixArbre = this.arbre.palm;
+            this.nomdelarbre= 'palmier';
              break;
            
           case 'sapin':
@@ -324,6 +333,7 @@ a {
 #boitearbre{
   display :flex;
   flex-wrap: wrap;
+  justify-content: center;
   .arbreachoisir{
   width :40%;
   max-height : 33vh;
@@ -388,19 +398,29 @@ a {
 #perso{
   margin: 0 auto;
   position : relative;
-svg{
+
+#shadow{
    @media only screen and (max-width: 768px) {
-    position : absolute;
+    //position : absolute;
      width:80%;
      top: 5%;
+     margin-bottom: 15%;
   }
-  width:50%;
-  margin: 0 auto;
-  position : fixed;
-  top: 30%;
-  left : 60%;
+  //width : 33px;
+   margin: 5% 0 0 22%;
+  // width:50%;
+  // margin: 0 auto;
+  // position : fixed;
+  // top: 30%;
+  // left : 60%;
+}
+#boitebulle{
+  min-height: 26%;
 }
 #txtBulle{
+  @media only screen and (max-width: 768px) {
+    max-width: 55%;
+  }
   background: #A7FFFF;
   box-shadow:  20px 20px 60px #00808e, 
              -20px -20px 60px #00aec0;
@@ -409,6 +429,7 @@ svg{
  padding: 8px 12px;
   max-width: 36%;
   border-radius: 10px;
+  margin-left: 15%;
 
   &:after {
 	content: '';
@@ -441,6 +462,9 @@ svg{
  background:none;
  border : none;
  border-bottom: 1px solid  #A7FFFF;
+ &::placeholder{
+   color: #A7FFFF;
+ }
  }
 
 }
