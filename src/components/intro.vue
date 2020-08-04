@@ -1,14 +1,21 @@
 <template>
- <div class="notification is-success column px-2	 is-three-quarters" v-if="show">
-  <button class="delete" @click="debutclick() ; show = !show"></button>
-  <div class="columns">
-  <div class="column monintro">
+ <div class="notification is-success column is-three-quarters is-mobile customnotif" v-if="show">
+  <div class="columns is-centered ">
+  <div class="column  monintro ">
       <h2 class="title is-2">Apprendre l'interface d'un ordinateur</h2>
-  <p>Salut à toi jeune apprenant. Je m'appelle Flantier et j'ai oublié d'enlever mon sapin de noël... C'est l'été, j'ai grave les boules. Peux-tu m'aider à m'en débarrasser ? Si tu suis mes instructions je sourirais, à l'inverse, je tirerai la tronche. </p>
-  <button class="button is-large" @click="debutclick() ; show = !show">C'est parti</button>
+      <figure class="image is-square" id="bonhommesvgmob">
+          <img src="../assets/bonhome.svg" alt="bonhomme" >
+        </figure>
+  <p>Salut à toi jeune apprenant. Je m'appelle Flantier et j'ai oublié d'enlever mon sapin de noël... C'est l'été, le sapin est vraiment en trop. Peux-tu m'aider à m'en débarrasser ? Si tu suis mes instructions je sourirais, à l'inverse, je tirerais une grimace. </p>
+  <button class="button intro-button" @click="debutclick() ; show = !show">C'est parti</button>
   </div>
-  <div class="column">
-  <img src="../assets/bonhome.svg" alt="">
+  <div class="column colonnebohnomme">
+      <div class="columns is-flex is-centered">
+          <figure class="image is-square" id="bonhommesvg">
+          <img src="../assets/bonhome.svg" alt="bonhomme" >
+        </figure>
+      </div>
+      
   </div>
   </div>
 </div>
@@ -44,5 +51,47 @@ show: true
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+      @media only screen and (max-width: 768px) {
+        // margin: 0 50px 100px 50px;
+        min-height: 100vh;
+        // justify-content: space-around;
+    }
 }
+.intro-button{
+    @media only screen and (max-width: 768px) {
+        margin : 20px 0;
+    }
+    background-color: #0097A7;
+    color:#A7FFFF;
+    border: none;
+}
+#bonhommesvg{
+    width:50%; 
+    //text-align: center;
+}
+
+.colonnebohnomme{
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
+}
+.customnotif{
+    @media only screen and (max-width: 768px) {
+        margin: 0 20px 100px 20px;
+        //min-height: 120vh;
+        justify-content: space-around;
+    }
+}
+#bonhommesvgmob{
+     
+    @media only screen and (max-width: 768px) {
+        display: block;
+         margin: 60px 0;
+    }
+    @media only screen and (min-width: 768px) {
+       display: none; 
+    }
+   
+}
+
 </style>

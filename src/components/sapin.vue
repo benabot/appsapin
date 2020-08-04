@@ -1,7 +1,7 @@
 <template>
   <kinesis-container tag="div"  class="columns is-desktop">
    
-      <div class="boite column" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0}">
+      <div class="boite column" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0 && compteurArbre<3}">
          <div v-if="compteurArbre == 2" id="boitearbre">
 
             <transition name="fade">
