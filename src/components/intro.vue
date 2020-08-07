@@ -6,7 +6,7 @@
       <figure class="image is-square" id="bonhommesvgmob">
           <img src="../assets/bonhome.svg" alt="bonhomme" >
         </figure>
-  <p>Salut à toi jeune apprenant. Je m'appelle Flantier et j'ai oublié d'enlever mon sapin de noël... C'est l'été, le sapin est vraiment en trop. Peux-tu m'aider à m'en débarrasser ? Si tu suis mes instructions je sourirais, à l'inverse, je tirerais une grimace. </p>
+  <p>Salut à toi jeune apprenant. Je m'appelle Flantier et j'ai oublié d'enlever mon sapin de noël... C'est l'été, le sapin est vraiment en trop. Peux-tu m'aider à m'en débarrasser ? Si tu suis mes instructions je sourirais, à l'inverse, je ferais une grimace. </p>
   <button class="button intro-button" @click="debutclick() ; show = !show">C'est parti</button>
   </div>
   <div class="column colonnebohnomme">

@@ -47,7 +47,7 @@
           <p v-if ="compteurBoules >=6 && compteurBoules<9">Il reste les boules <span class="has-text-weight-bold">{{laBoule}}s</span></p>
           </transition>
            <transition name="fade">
-          <p v-if ="compteurBoules ==9 && compteurNom <3">Merci ! Au fait, tu t'appeles comment ?</p>
+          <p v-if ="compteurBoules ==9 && compteurNom <3">Merci ! Au fait, tu t'appelles comment ?</p>
           </transition>
            <transition name="fade">
           <p v-if ="compteurNom >=3 && compteurArbre ==0">Bonjour <span class="has-text-weight-bold">{{blaze}}</span>, place au printemps. <br/> Clique sur le sapin pour le faire disparaître</p>
