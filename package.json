@@ -24,5 +24,6 @@
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
