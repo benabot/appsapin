@@ -1,5 +1,8 @@
 # app-noel
 
+## Small vueJs app for teaching keyboard interface to childrens
+Play with it [https://app-noel.netlify.app](https://app-noel.netlify.app)
+
 ## Project setup
 ```
 npm install
