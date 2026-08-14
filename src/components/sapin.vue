@@ -3,32 +3,22 @@
    
       <div class="boite column" @click="dispaArbre()" :style="{'background-image': 'url(' + choixArbre+ ')'}" id="arbre" :class="{survol : compteurNom>0 && compteurArbre<3}">
          <div v-if="compteurArbre == 2" id="boitearbre">
-
-            <transition name="fade">
            <img @click="changeArbre('pin')" class="arbreachoisir"  id="pin" alt="arbre" :src="require('@/assets/pin.svg')">
-           </transition>
-            <transition name="fade">
            <img @click="changeArbre('palm')" class="arbreachoisir"  id="palm" alt="arbre" :src="require('@/assets/palm.svg')">
-           </transition>
-            <transition name="fade">
            <img @click="changeArbre('pommier')" class="arbreachoisir"  id="pommier" alt="arbre" :src="require('@/assets/pommier.svg')">
-           </transition>
-            <transition name="fade">
            <img @click="changeArbre('hetre')" class="arbreachoisir"  id="hetre" alt="arbre" :src="require('@/assets/hetre.svg')">
-           </transition>
-
          </div>
          <div id="boiteboules">
          <!-- <img @click="sourireClick" v-for="i in 2" :key = "i" :id="'boule'+i"  :src="randomImage" alt="boule bleue" class="boule bun">  -->
-         <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule4" src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule6"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" ref="jaune" id="boule7"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" ref="rouge" id="boule8" src="../assets/bouleRouge.svg" alt="boule" class="boule rouges"/>
-          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" ref="bleue" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleues"/>
+         <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" id="boule1"  src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" id="boule2"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" id="boule3"  src="../assets/bouleJaune.svg" alt="boule" :class="bouleSelect" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" id="boule4" src="../assets/bouleRouge.svg" alt="boule" :class="bouleSelect" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" id="boule5"  src="../assets/bouleBleu.svg" alt="boule" :class="bouleSelect" class="boule bleues"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" id="boule6"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('jaune', $event) ; auterboule()" id="boule7"  src="../assets/bouleJaune.svg" alt="boule" class="boule jaunes"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('rouge', $event) ; auterboule()" id="boule8" src="../assets/bouleRouge.svg" alt="boule" class="boule rouges"/>
+          <img v-if="compteurArbre ==0 || nouvellesboules" @click="sourireClick('bleue', $event) ; auterboule()" id="boule9"  src="../assets/bouleBleu.svg" alt="boule" class="boule bleues"/>
           
         </div>
         
@@ -243,9 +233,13 @@ export default {
   },
 
    created() {
-     setInterval(()=> {
+     this._mainInterval = setInterval(() => {
        this.lamain = !this.lamain
      }, 800)
+  },
+
+  beforeUnmount() {
+    clearInterval(this._mainInterval)
   },
 
    mounted: function(){
@@ -453,10 +447,9 @@ a {
 .fade-leave-active {
   transition: all 0s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
-  // transform: scale(0, 0);
-  font-size : 0px;
+  font-size: 0px;
 }
 .insertnom{
  background:none;

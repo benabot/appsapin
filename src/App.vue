@@ -3,9 +3,7 @@
    
     
       <Header/>
-       <transition name="fade">
       <div class="columns is-centered"><Intro v-on:gogo="debut = true"></Intro></div>
-      </transition>
        <transition name="fade">
       <Sapin v-if="debut"></Sapin>
       </transition>
@@ -62,9 +60,7 @@ flex-direction: row;
 .fade-leave-active {
   transition: all 1.4s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
-  // transform: scale(0, 0);
- 
 }
 </style>
